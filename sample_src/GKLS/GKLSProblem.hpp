@@ -45,17 +45,17 @@
 class TGKLSProblem : public IOptProblem
 {
 protected:
-  /// Параметры для текущей задачи
+  /// Parameters for curent problem
   GKLSOption option;
 
 
-  /// Задать параметры функции
+  /// Set the parameters
   void SetOptions();
 
 
-  /// Вычислить значение функции с индексом index в точке y
+  /// Compute the value of the function number at the point y
   virtual double Compute(int index, const vector<double>& y) const;
-  /// Вычислить производные функции с индексом index в точке y
+  /// Compute the derivatives of the function number index  at the point y
   virtual vector<double> ComputeDerivatives(int index, const vector<double>& y) const;
 
   double CalculateNDFunction(const double* x) const;
@@ -69,7 +69,7 @@ protected:
   int CalculateD2FunctionHessian(const double* x, double** h) const;
 
 public:
-  /// Принимает индекс функции от 1 до 100 включительно
+  /// The index is in the range [1,100]
   TGKLSProblem(int problemIndex = 1, int dim = 2, GKLSClass type = Simple, GKLSFuncionType functionType = TD);
 
   ~TGKLSProblem();

@@ -2,7 +2,7 @@
 
 #include "IConstrainedOptProblem.hpp"
 
-// Пример класса с определением задачи условной оптимизации
+// Example of class for constrained problem
 class TOptSqConstrProblem : public IConstrainedOptProblem
 {
   virtual double Compute(int index, const vector<double>& y) const
