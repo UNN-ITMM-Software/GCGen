@@ -1,7 +1,7 @@
 # GCGen  (Global Constrained optimization problem Generator)
 
 A well-known approach to investigating and comparing the multiextremal optimization algorithms is based on testing these methods by solving a set of problems, chosen randomly from some specially designed class.
-It is supposed, that a constrained global optimization problem can be persented in the following form:
+It is supposed, that a constrained global optimization problem can be presented in the following form:
 
 min{φ(y): y ∈ D, g<sub>i</sub>(y) ≤ 0, 1 ≤ i ≤ m}			
 D = {y ∈ R<sup>N</sup>: a<sub>j</sub> ≤ y<sub>j</sub> ≤ b<sub>j</sub>, 1 ≤ j ≤ N}.
