@@ -10,104 +10,103 @@ using uint = unsigned;
 
 enum EOptFunctionParameter { ofpLipschitz, ofpMinimum, ofpMaximum, ofpDerivatives };
 
-/// Базовый класс для задач оптимизации
+/// Base class for optimization problems
 class IGeneralOptProblem
 {
 protected:
-  // описание отдельной функции в задаче оптимизации
+  // description of a function in the optimization problem
   struct TOptFunction
   {
-    // размерность функции
+    // Dimension
     int mDimension;
-    // координаты точки оптимума (глобального минимума)
+    // Minimizer
     vector<double> mMinimumPoint;
-    // значение в точке оптимума
+    // Minimum value
     double mMinimumValue;
-    // координаты точки глобального максимума
+    // Maximizer
     vector<double> mMaximumPoint;
-    // значение в точке глобального максимума
+    // Maximum value
     double mMaximumValue;
-    // значение константы Липшица
+    // Lipschitz constant
     double mLipschitzConstant;
 
-    // заданы координаты и значение глобального минимума
+    // The minimizer and the global minimum value are given
     bool mIsMinimumKnown;
-    // заданы координаты и значение глобального максимума
+	// The maximizer and the global maximum value are given
     bool mIsMaximumKnown;
-    // задано значение константы Липшица
+    // The value of the Lipschitz constant is given
     bool mIsLipschitzConstantKnown;
-    // задано вычисление производной функции
+    // The function derivative is known
     bool mIsDerivativesKnown;
   };
-  // количество функций
+  // number of functions
   int mFunctionNumber;
-  // функции задачи оптимизации
+  // functions
   vector<TOptFunction> mFunctions;
-  // индексы критериев в списке функций
+  // indexes of criteria in the list of functions
   vector<int> mCriterionIndeces;
-  // индексы ограничений в списке функций
+  // indexes of constraints in the list of functions
   vector<int> mConstraintIndeces;
 
-  // размерность задачи оптимизации
+  // problem dimension
   int mDimension;
-  // Область определения задачи оптимизации в виде гиперинтервала
-  // (mLoBound - левый нижний угол, mUpBound - правый верхний угол)
+  // The problem domain in the form of a hiperinterval 
+  // (mLoBound - lower left corner, mUpBound - upper right corner)
   vector<double> mLoBound;
   vector<double> mUpBound;
 
-  // координаты точки оптимума задачи оптимизации (глобального минимума)
+  // global minimizer
   vector<double> mOptimumPoint;
-  // значение в точке оптимума в задаче оптимизации
+  // global minimum value
   double mOptimumValue;
 
-  // номер задачи в семействе, -1 - если не принадлежит семейству
+  // number of problem in the series, -1 for a single problem
   int mProblemIndex;
 
   /// Выяснить, что задано для функции с индексом index
   bool GetStatus(uint index, enum EOptFunctionParameter param) const;
 
-  /// Задать значение константы Липшица функции с индексом index
+  /// What is given for function number index
   void SetLipschitzConstant(uint index, double lipConst);
-  /// Вернуть значение константы Липшица функции с индексом index
-  /// Если константа Липшица не задана, бросается исключение
+  /// Lipschitz constant for the function number index
+  /// If not specified, throws an exception
   double GetLipschitzConstant(uint index) const;
 
-  /// Задать координаты и значение глобального минимума функции с индексом index
+  /// Set the global minimazer and the global minimum value for function number index
   void SetFunctionMin(uint index, vector<double> minPoint, double minValue);
-  /// Вернуть координаты глобального минимума функции с индексом index
-  /// Если минимальное значение функции не задано, бросается исключение
+  /// Get the global minimizer for function number index
+  /// If not specified, throws an exception
   vector<double> GetMinPoint(uint index) const;
-  /// Вернуть значение глобального минимума функции с индексом index
-  /// Если минимальное значение функции не задано, бросается исключение
+  /// Get the global minimum value for function number index
+  /// If not specified, throws an exception
   double GetMinValue(uint index) const;
-  /// Задать координаты и значение глобального максимума функции с индексом index
+  /// Set the global maximazer and the global maximum value for function number index
   void SetFunctionMax(uint index, vector<double> maxPoint, double maxValue);
-  /// Вернуть координаты глобального максимума функции с индексом index
-  /// Если максимальное значение функции не задано, бросается исключение
+  /// Get the global maximizer for function number index
+  /// If not specified, throws an exception
   vector<double> GetMaxPoint(uint index) const;
-  /// Вернуть значение глобального максимума функции с индексом index
-  /// Если максимальное значение функции не задано, бросается исключение
+  /// Get the global maximum value for function number index
+  /// If not specified, throws an exception
   double GetMaxValue(uint index) const;
 
-  /// Вернуть координаты глобального минимума
+  /// Get global minimizer
   vector<double> GetOptimumPoint() const;
-  /// Вернуть значение глобального минимума
+  /// Get global minimum value
   double GetOptimumValue() const;
 
-  /// Вычислить значение функции с индексом index в точке y
+  /// Compute the value of the function number index at the point 
   virtual double Compute(int index, const vector<double>& y) const = 0;
 
-  /// Вычислить производные функции с индексом index в точке y
-  /// Базовая версия бросает исключение, в потомке м.б. переопределена
-  ///   при этом должен быть установлен в true флаг mIsDerivativesKnown
+  /// Compute the derivatives of the function number index at the point y
+  /// If not specified, throws an exception
   virtual vector<double> ComputeDerivatives(int index, const vector<double>& y) const;
 
   IGeneralOptProblem();
 public:
   IGeneralOptProblem(int dim, vector<double> loBound, vector<double> upBound, int probIndex = -1);
-  /// Вернуть размерность задачи
+  /// Get dimension
   int GetDimension() const;
-  /// Вернуть область определения функционала в виде гиперинтервала
-  /// (lb - левый нижний угол, ub - правый верхний угол)
+  /// Get domain 
+  // (lb - lower left corner, ub - upper right corner)
   void GetBounds(vector<double>& lb, vector<double>& ub) const;
 };

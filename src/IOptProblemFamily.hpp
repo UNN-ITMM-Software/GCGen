@@ -6,9 +6,9 @@
 class IOptProblemFamily : public IGeneralOptProblemFamily
 {
 protected:
-  // Конструктор скрыт, чтобы нельзя было создать объект данного класса
-  // Требуется объявить потомка, перенести конструктор в public и реализовать
-  IOptProblemFamily() {}
+	// The constructor is hidden so that one can not create an object of this class
+	// It is required to declare a child, move the constructor to public and implement it
+	IOptProblemFamily() {}
 public:
   IOptProblem * operator[](int index);
 };

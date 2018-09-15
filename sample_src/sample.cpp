@@ -41,10 +41,10 @@ int main()
       gklsFam[i]->ComputeFunction({ 0.5, 0.5 }) << std::endl;
 
     {
-      // создаем задачу с долей допустимой области 30% от области изменения параметров
+      // create a problem with 30% fraction of feasible domain with respect to the whole search domain
       TGKLSConstrainedProblem gklsConst(cptInFeasibleDomain, 0.3, 0, 1);
       cout << "  GKLS Constrained Problem 1" << std::endl;
-      // получаем координаты глобального минимума
+      // get the global minimizer coordinates
       std::vector<double> y = gklsConst.GetOptimumPoint();
       std::cout << "min GKLSConst(" << y[0] << ", " << y[1] << ") = " << gklsConst.ComputeFunction(y) << std::endl;
 
@@ -83,11 +83,11 @@ int main()
       grishFam[i]->ComputeFunction({ 0.5, 0.5 }) << std::endl;
 
     {
-      // создаем задачу с долей допустимой области 30% от области изменения параметров
+      // create a problem with 30% fraction of feasible domain with respect to the whole search domain
       GrishaginConstrainedProblem grishConst(cptInFeasibleDomain, 0.3, 0, 1);
       cout << "  Grishagin Constrained Problem 1" << std::endl;
-      // получаем координаты глобального минимума
-      std::vector<double> y = grishConst.GetOptimumPoint();
+	  // get the global minimizer coordinates
+	  std::vector<double> y = grishConst.GetOptimumPoint();
       std::cout << "min grishConst(" << y[0] << ", " << y[1] << ") = " << grishConst.ComputeFunction(y) << std::endl;
 
       cout << "OptimumValue = " << grishConst.GetOptimumValue() << std::endl;

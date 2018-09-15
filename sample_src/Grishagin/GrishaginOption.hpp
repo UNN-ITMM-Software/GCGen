@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-/// Параметры задачи Гришагина
+/// Grishagin problems parameters
 struct GrishaginOption
 {
   unsigned char icnf[45];

@@ -3,21 +3,21 @@
 #include "IConstrainedOptProblem.hpp"
 #include "GKLSOption.hpp"
 
-// Пример класса с определением задачи условной оптимизации
+// Example of class for constrained problem
 class TGKLSConstrainedProblem : public IConstrainedOptProblem
 {
 protected:
 
-  /// Параметры для текущей задачи
+  /// Parameters
   vector<GKLSOption> options;
 
-  /// Задать параметры функции
+  /// Set parameters
   void SetOptions(int problemIndex);
 
-  /// Вычислить значение функции с индексом index в точке y
+  /// Compute the function number index at the point y
   virtual double Compute(int problemIndex, const vector<double>& y) const;
 
-  /// Вычислить производные функции с индексом index в точке y
+  /// Compute the derivatives of the function number index at the point y
   virtual vector<double> ComputeDerivatives(int problemIndex, const vector<double>& y) const;
 
 

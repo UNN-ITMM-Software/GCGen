@@ -2,16 +2,16 @@
 
 #include "IGeneralOptProblem.hpp"
 
-/// Базовый класс для семейств задач оптимизации
+/// Base class for the problem series
 class IGeneralOptProblemFamily
 {
 protected:
-  // указатели на задачи семейства, задачи должны быть сформированы в конструкторе класса
-  // число задач в семействе = размеру вектора pOptProblems
+  // pointers to the problems; problems must be generated in the class constructor
+  // number of problems  = size of vector pOptProblems
   vector<IGeneralOptProblem*> pOptProblems;
 
-  // Конструктор скрыт, чтобы нельзя было создать объект данного класса
-  // Требуется объявить потомка, перенести конструктор в public и реализовать
+  // The constructor is hidden so that one can not create an object of this class
+  // It is required to declare a child, move the constructor to public and implement it
   IGeneralOptProblemFamily() {}
 public:
   int GetFamilySize() const;

@@ -3,28 +3,28 @@
 #include "IConstrainedOptProblem.hpp"
 #include "GrishaginOption.hpp"
 
-// Пример класса с определением задачи условной оптимизации
+// Example of class for constrained problem
 class GrishaginConstrainedProblem : public IConstrainedOptProblem
 {
 protected:
 
-  /// Параметры для текущей задачи
+  /// Parameters
   vector<GrishaginOption> options;
 
   double rndm20(unsigned char k[]);
   void gen(unsigned char k[], unsigned char k1[], int kap1, int kap2);
-  /// Задать параметры функции
+  /// Set parameters
   void SetOptions(int index);
 
-  /// Вычисление производной по нулевой координате
+  /// Compute x-derivaive
   double CalculateXDerivative(int index, const vector<double>& y) const;
-  /// Вычисление производной по первой координате
+  /// Compute y-derivaive
   double CalculateYDerivative(int index, const vector<double>& y) const;
 
-  /// Вычислить значение функции с индексом index в точке y
+  /// Compute the function number index at the point y
   virtual double Compute(int index, const vector<double>& y) const;
 
-  /// Вычислить производные функции с индексом index в точке y
+  /// Compute the derivatives of the function number index at the point y
   virtual vector<double> ComputeDerivatives(int index, const vector<double>& y) const;
 
 

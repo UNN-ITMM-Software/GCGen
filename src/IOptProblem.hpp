@@ -5,34 +5,34 @@
 class IOptProblem : public IGeneralOptProblem
 {
 protected:
-  /// Номер критерия в векторе mFunctions
+  /// Сriterion number in the vector mFunctions
   uint mFunctionIndex;
-  /// Задать значение константы Липшица
+  /// Set the value of Lipschitz constant
   void SetLipschitzConstant(double lipConst);
-  /// Задать координаты и значение глобального максимума
+  /// Set global maximizer and global maximum value
   void SetFunctionMax(vector<double> maxPoint, double maxValue);
   IOptProblem();
 public:
   IOptProblem(int dim, vector<double> loBound, vector<double> upBound,
     vector<double> optPoint, double optVal, int probIndex = -1);
 
-  /// Вернуть координаты глобального минимума
+  /// Get global minimizer
   vector<double> GetOptimumPoint() const;
-  /// Вернуть значение глобального минимума
+  /// Get global minimum value
   double GetOptimumValue() const;
 
-  /// Выяснить, что задано для целевой функции
+  /// What is specified for the objective function
   bool GetStatus(enum EOptFunctionParameter param) const;
-  /// Вернуть координаты глобального максимума
+  /// Get global maximizer
   vector<double> GetMaxPoint() const;
-  /// Вернуть значение глобального максимума
+  /// Get global maximum value
   double GetMaxValue(int index) const;
-  /// Вернуть значение константы Липшица
+  /// Get the value of Lipschitz constant
   double GetLipschitzConstant() const;
 
-  /// Вычислить значение целевой функции в точке y
+  /// Compute the value of the objective function at the point y
   double ComputeFunction(const vector<double>& y) const;
 
-  /// Вычислить производные целевой функции в точке y
+  /// Compute the value of the objective function derivatives at the point y
   vector<double> ComputeFunctionDerivatives(const vector<double>& y) const;
 };
