@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "IOptProblem.hpp"
+#include <cmath>
 
 class THansenProblem0 : public IOptProblem
 {

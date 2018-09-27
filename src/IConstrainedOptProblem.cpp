@@ -1,5 +1,6 @@
 #include "IConstrainedOptProblem.hpp"
 #include <algorithm>
+#include <cmath>
 
 // ------------------------------------------------------------------------------------------------
 double IConstrainedOptProblem::MaxFunctionCalculate(vector<double> y)
@@ -75,8 +76,8 @@ double IConstrainedOptProblem::CalculateRHS(double delta, int m, double Epsilon,
     // compute coordinates of trial point
     for (int j = 0; j < mDimension; j++)
     {
-      w = z % size[j]; // node number 
-      yArray[j] = a[j] + w * step[j];//left border + node number * step                               
+      w = z % size[j]; // node number
+      yArray[j] = a[j] + w * step[j];//left border + node number * step
       z = z / size[j]; // for the next loop iteration
     }
     // carry out the trial
@@ -239,7 +240,7 @@ vector<double>  IConstrainedOptProblem::SetBoundaryShift()
 
   for (unsigned j = 0; j < mConstraintIndeces.size(); j++)
   {
-    activeShift[j] = 0; // shift for the constraints 
+    activeShift[j] = 0; // shift for the constraints
   }
   for (int j = 0; j < 2 * mDimension; j++)
   {
@@ -257,15 +258,15 @@ vector<double>  IConstrainedOptProblem::SetBoundaryShift()
 
 
   bool isBoundReached = false; // is the border point found
-  int closestDir = 0, closestDirFull = 0; 
+  int closestDir = 0, closestDirFull = 0;
   int i = 1;
-  unsigned dirNum = 0; 
+  unsigned dirNum = 0;
 
   while ((!isBoundReached) || (dirNum < (unsigned)pow(2, 2 * mDimension) - 1))
   {
     for (int k = 0; k < 2 * mDimension; k++)
     {
-      if ((dirNum & (unsigned)pow(2, k)) == (unsigned)pow(2, k)) continue; 
+      if ((dirNum & (unsigned)pow(2, k)) == (unsigned)pow(2, k)) continue;
       isBoundReached = false;
       // расчет новой точки
       for (int i = 0; i < mDimension; i++)
@@ -335,7 +336,7 @@ vector<double>  IConstrainedOptProblem::SetBoundaryShift()
       if (isBoundReached)
       {
         dirNum = dirNum | (unsigned)pow(2, k);
-        if (mActiveConstraintNumber == 1) 
+        if (mActiveConstraintNumber == 1)
           break;
       }
     }
@@ -343,19 +344,19 @@ vector<double>  IConstrainedOptProblem::SetBoundaryShift()
     i++;
   }
 
-  double ** deltaForConstraints = new double*[2 * mDimension]; 
+  double ** deltaForConstraints = new double*[2 * mDimension];
   double ** sortDeltaForConstraints = new double*[2 * mDimension];
   for (int k = 0; k < 2 * mDimension; k++)
   {
     deltaForConstraints[k] = new double[mConstraintIndeces.size()];
     sortDeltaForConstraints[k] = new double[mConstraintIndeces.size()];
   }
-  double diff = 0, minDiff = 50000; 
+  double diff = 0, minDiff = 50000;
   if (mActiveConstraintNumber > 1)
   {
     for (int k = 0; k < 2 * mDimension; k++)
     {
-   
+
       for (int j = 0; j < mConstraintIndeces.size(); j++)
       {
         if (ComputeConstraint(j, tempPoint[k]) >= -0.03)
@@ -369,7 +370,7 @@ vector<double>  IConstrainedOptProblem::SetBoundaryShift()
           sortDeltaForConstraints[k][j] = abs(ComputeConstraint(j, tempPoint[k]));
         }
       }
-      
+
       std::sort(sortDeltaForConstraints[k], sortDeltaForConstraints[k] + mConstraintIndeces.size());
       diff = 0;
 
@@ -426,7 +427,7 @@ void IConstrainedOptProblem::InitProblem()
     mImprovementCoefficients.push_back(10.0);
   }
 
-  /// constraints shift 
+  /// constraints shift
   mQ.resize(mConstraintIndeces.size());
 
   /// scaling coefficients for the constraints
@@ -543,7 +544,7 @@ vector<double> IConstrainedOptProblem::TransformPoint(vector<double> point, int 
         boundaryShift = mBoundaryShift[i];
       }
     }
-    // shifting the optimizer to the border 
+    // shifting the optimizer to the border
     if (boundaryShift > 0)
     {
       if ((point[coordinateNum] >= objectiveMin[coordinateNum]) &&

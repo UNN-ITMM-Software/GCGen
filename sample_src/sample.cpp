@@ -2,23 +2,23 @@
 #include "HansenProblem.hpp"
 #include "HansenProblemFamily.hpp"
 
-#include "Hill\HillProblem.hpp"
-#include "Hill\HillProblemFamily.hpp"
+#include "Hill/HillProblem.hpp"
+#include "Hill/HillProblemFamily.hpp"
 
-#include "Shekel\ShekelProblem.hpp"
-#include "Shekel\ShekelProblemFamily.hpp"
+#include "Shekel/ShekelProblem.hpp"
+#include "Shekel/ShekelProblemFamily.hpp"
 
 #include "OptSqConstrProblem.hpp"
 
-#include "Grishagin\grishagin_function.hpp"
-#include "Grishagin\GrishaginProblemFamily.hpp"
-#include "Grishagin\GrishaginConstrainedProblem.hpp"
-#include "Grishagin\GrishaginConstrainedProblemFamily.hpp"
+#include "Grishagin/grishagin_function.hpp"
+#include "Grishagin/GrishaginProblemFamily.hpp"
+#include "Grishagin/GrishaginConstrainedProblem.hpp"
+#include "Grishagin/GrishaginConstrainedProblemFamily.hpp"
 
-#include "GKLS\GKLSProblem.hpp"
-#include "GKLS\GKLSProblemFamily.hpp"
-#include "GKLS\GKLSConstrainedProblem.hpp"
-#include "GKLS\GKLSConstrainedProblemFamily.hpp"
+#include "GKLS/GKLSProblem.hpp"
+#include "GKLS/GKLSProblemFamily.hpp"
+#include "GKLS/GKLSConstrainedProblem.hpp"
+#include "GKLS/GKLSConstrainedProblemFamily.hpp"
 
 using std::cout;
 
