@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include <vector>
+#include <cmath>
+#include <cstdlib>
 #include "gkls_random.hpp"
 
 /* Penalty value of the generated function if x is not in D */
