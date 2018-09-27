@@ -20,10 +20,3 @@ file(GLOB SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/sample_src/*.cpp
                     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp)
 
 add_executable(${PROJECT_NAME_STR} ${SRC_FILES})
-
-if (CMAKE_COMPILER_IS_GNUCXX)
-  add_definitions(-fopenmp)
-  target_link_libraries(${PROJECT_NAME_STR} gomp)
-elseif (MSVC)
-  add_definitions(/EHsc /openmp)
-endif()
