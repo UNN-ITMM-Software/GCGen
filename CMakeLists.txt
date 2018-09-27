@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.2)
 
 set(PROJECT_NAME_STR builder_sample)
+set(CMAKE_CXX_STANDARD 11)
 
 project (${PROJECT_NAME_STR})
 
