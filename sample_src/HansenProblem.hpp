@@ -298,10 +298,10 @@ class THansenProblem12 : public IOptProblem
     return{ res };
   }
 public:
-  THansenProblem12() : IOptProblem(1, { 0.001 }, { 0.70711 }, { -1.5874 }, 0, 12)
+  THansenProblem12() : IOptProblem(1, { 0.001 }, { 0.99 }, { 0.70711 }, -1.5874, 12)
   {
     mFunctions[mFunctionIndex].mIsDerivativesKnown = true;
-    SetLipschitzConstant(8.31866);
+    SetLipschitzConstant(8.5);
     SetFunctionMax({ 0.001 }, -1.01);
   }
 };
