@@ -403,7 +403,7 @@ class THansenProblem17 : public IOptProblem
     return{ res };
   }
 public:
-  THansenProblem17() : IOptProblem(1, { 0.0 }, { 0.0 }, { 2.0 }, 0, 17)
+  THansenProblem17() : IOptProblem(1, { 0.0 }, { 6.0 }, { 2.0 }, 0, 17)
   {
     mFunctions[mFunctionIndex].mIsDerivativesKnown = true;
     SetLipschitzConstant(4.0);
