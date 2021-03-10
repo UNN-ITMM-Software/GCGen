@@ -56,7 +56,7 @@ vector<double> IOptProblem::GetMaxPoint() const
 }
 
 // ------------------------------------------------------------------------------------------------
-double IOptProblem::GetMaxValue(int index) const
+double IOptProblem::GetMaxValue() const
 {
   return IGeneralOptProblem::GetMaxValue(mFunctionIndex);
 }

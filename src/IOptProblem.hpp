@@ -26,7 +26,7 @@ public:
   /// Get global maximizer
   vector<double> GetMaxPoint() const;
   /// Get global maximum value
-  double GetMaxValue(int index) const;
+  double GetMaxValue() const;
   /// Get the value of Lipschitz constant
   double GetLipschitzConstant() const;
 
