@@ -28,7 +28,7 @@ class THillProblem : public IOptProblem
     for (int i = 0; i < NUM_HILL_COEFF; i++)
     {
       res = res + aHill[mProblemIndex][i] * sin(2 * i * M_PI * y[0]) + bHill[mProblemIndex][i] *
-        sin(2 * i * M_PI * y[0]);
+        cos(2 * i * M_PI * y[0]);
     }
     return res;
   }
@@ -39,7 +39,7 @@ class THillProblem : public IOptProblem
     for (int i = 0; i < NUM_HILL_COEFF; i++)
     {
       res = res + 2 * i * M_PI * aHill[mProblemIndex][i] * cos(2 * i * M_PI * y[0]) + 2 * i *
-        M_PI * bHill[mProblemIndex][i] * cos(2 * i * M_PI * y[0]);
+        M_PI * bHill[mProblemIndex][i] * sin(2 * i * M_PI * y[0]);
     }
 
     return{ res };
