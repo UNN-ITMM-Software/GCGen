@@ -1,23 +1,32 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.20)
 
-set(PROJECT_NAME_STR builder_sample)
+set(PROJECT_NAME gc_gen)
 set(CMAKE_CXX_STANDARD 11)
 
-project (${PROJECT_NAME_STR})
+project (${PROJECT_NAME})
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin/release)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/bin/debug)
 
-file(GLOB SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/sample_src/*.cpp
-                    ${CMAKE_CURRENT_SOURCE_DIR}/sample_src/*.h
-                    ${CMAKE_CURRENT_SOURCE_DIR}/sample_src/*.hpp
-                    ${CMAKE_CURRENT_SOURCE_DIR}/sample_src/GKLS/*.hpp
-                    ${CMAKE_CURRENT_SOURCE_DIR}/sample_src/GKLS/*.cpp
-                    ${CMAKE_CURRENT_SOURCE_DIR}/sample_src/Grishagin/*.hpp
-                    ${CMAKE_CURRENT_SOURCE_DIR}/sample_src/Grishagin/*.cpp
-                    ${CMAKE_CURRENT_SOURCE_DIR}/sample_src/Hill/*.cpp
-                    ${CMAKE_CURRENT_SOURCE_DIR}/sample_src/Shekel/*.cpp
-                    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
-                    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
-                    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp)
+set(PROJECT_LIBRARY "${PROJECT_NAME}")
+set(PROJECT_LIBRARY_SAMPLES "${PROJECT_NAME}_samples")
+set(PROJECT_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(PROJECT_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
-add_executable(${PROJECT_NAME_STR} ${SRC_FILES})
+include_directories("${PROJECT_INCLUDE}")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/samples_families/")
+
+# BUILD
+add_subdirectory(samples)
+add_subdirectory(samples_families)
+add_subdirectory(src)
+
+# REPORT
+message( STATUS "")
+message( STATUS "General configuration for ${PROJECT_NAME}")
+message( STATUS "======================================")
+message( STATUS "")
+message( STATUS "   Configuration: ${CMAKE_BUILD_TYPE}")
+message( STATUS "")
